@@ -35,6 +35,8 @@ export default class ScrollPicker extends Component {
 
         this.itemHeight = this.props.itemHeight || 30;
         this.wrapperHeight = this.props.wrapperHeight || (this.props.style ? this.props.style.height : 0) ||this.itemHeight * 5;
+        this.wrapperWidth = this.props.wrapperWidth;
+        this.left = this.props.left;
 
         this.state = {
             selectedIndex: this.props.selectedIndex || 0
@@ -54,7 +56,7 @@ export default class ScrollPicker extends Component {
 
     render(){
         let {header, footer} = this._renderPlaceHolder();
-        let highlightWidth = (this.props.style ? this.props.style.width : 0) || deviceWidth;
+        let highlightWidth = this.props.wrapperWidth;
         let highlightColor = this.props.highlightColor || '#333';
         let wrapperStyle = {
             height:this.wrapperHeight,
@@ -68,10 +70,11 @@ export default class ScrollPicker extends Component {
             top:(this.wrapperHeight - this.itemHeight) / 2,
             height:this.itemHeight,
             width:highlightWidth,
+            left: this.left,
             borderTopColor:highlightColor,
             borderBottomColor:highlightColor,
-            borderTopWidth:StyleSheet.hairlineWidth,
-            borderBottomWidth:StyleSheet.hairlineWidth,
+            borderTopWidth:2,
+            borderBottomWidth:2,
         };
 
         return (
